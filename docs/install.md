@@ -120,9 +120,3 @@ The installer will:
 Reboot after completion.
 
 If you still see the Live ISO GRUB menu after rebooting, select `Boot existing OS`.
-
----
-
-## Using the installed system
-
-

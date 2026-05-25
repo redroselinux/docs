@@ -101,3 +101,18 @@ Installing a package saves all the files inside of the tarball into a file in `/
 ## Inicialization
 
 The `car init` command creates all important files that Car needs to function. It is run during installation of the system. To force init even when it was already done, use it with the `--force` flag.
+
+## Building from source
+
+Car is a Nimble project, so you will need Nim and Nimble installed (they require a C compiler). Clone the repo:
+
+```bash
+git clone https://github.com/redroselinux/car
+cd car
+```
+
+Then run the build command:
+
+```bash
+nimble build
+```

@@ -1,27 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <title>Docs</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Docs</title>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
 
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
-</head>
-<body>
-  <div id="app">Loading...</div>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"
+        />
 
-  <script>
-    window.$docsify = {
-      name: "Redrose Linux Docs",
-      repo: "https://github.com/redroselinux/docs",
-      basePath: "./docs/",
-      loadSidebar: true,
-      subMaxLevel: 2
-    };
-  </script>
+        <style>
+            :root {
+                --theme-color: #e74c3c;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">Loading...</div>
 
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-</body>
+        <script>
+            window.$docsify = {
+                name: "Redrose Linux Docs",
+                repo: "https://github.com/redroselinux/docs",
+                basePath: "./docs/",
+                loadSidebar: true,
+                subMaxLevel: 2,
+            };
+        </script>
+
+        <script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
+        <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+    </body>
 </html>

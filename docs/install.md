@@ -19,7 +19,7 @@ To install Redrose Linux, first download a disk image from the downloads page:
   ```bash
   curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3 
   ```
-* [#/build-your-own-image.md](Build your own image (advanced))
+* [Build your own image (advanced)](#/build-your-own-image.md)
 
 SHA256 hashes are available in the GitHub releases page:
 [https://github.com/redroselinux/redroselinux/releases](https://github.com/redroselinux/redroselinux/releases)

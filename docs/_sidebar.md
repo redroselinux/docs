@@ -1,5 +1,8 @@
 - [Home](/README.md)
 - [Why another distro?](/why.md)
+- [Security Policy](/security.md)
+- [Contributing Guide](/contributing.md)
+- [OSS Policy](/oss-policy.md)
 - [Install Guide](/install.md)
 - [Build your own Live ISO](/build-your-own-image.md)
 - [Car (package manager)](/car.md)
@@ -7,3 +10,4 @@
 - [`news-reader`](/news-reader.md)
 - [`mkfstab`](/mkfstab.md)
 - [FHS](/fhs.md)
+- [`redrose-runit`](/redrose-runit.md)

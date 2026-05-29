@@ -1,6 +1,6 @@
 # `news-reader`
 
-`news-reader` is a tool to read the latest Redrose Linux news, inspired by Gentoo. It is written in Nim.
+`news-reader` is a tool to read the latest Redrose Linux news, inspired by Gentoo. It is written in C (originally in Nim).
 
 ## Usage
 
@@ -28,4 +28,4 @@ My article content!
 
 ## Building from source
 
-As in many Redrose Linux tools, you use the `make_car_package.sh` script. Building requires Nim and Nimble installed.
+As in many Redrose Linux tools, you use the `make_car_package.sh` script. Building requires GCC or another C compiler and make installed.

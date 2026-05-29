@@ -19,7 +19,6 @@ To install Redrose Linux, first download a disk image from the downloads page:
   ```bash
   curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3 
   ```
-* [Build your own image (advanced)](#/build-your-own-image.md)
 
 SHA256 hashes are available in the GitHub releases page:
 [https://github.com/redroselinux/redroselinux/releases](https://github.com/redroselinux/redroselinux/releases)
@@ -34,6 +33,10 @@ To verify:
 ```bash
 sha256sum -c "hash"
 ```
+
+### Build your own Live ISO
+
+* [Build your own ISO (advanced)](#/build-your-own-image.md)
 
 ## Installing
 
@@ -68,12 +71,11 @@ After flashing:
 
 ![GRUB menu](#/images/GRUB_menu.png)
 
-Boot the installer by pressing the ENTER key, and waiting for it to load. Then pick an install mode - guided or manual. Manual installation is completely undocumented. The rootfs is in `/rootfs.tar.gz`.
-If you use the guided installation, it should be clear what to do.
+Boot the installer by pressing the ENTER key, and waiting for it to load. Then pick an install mode - guided or manual.
 
----
+### Guided
 
-### Default settings
+#### Default settings
 
 | Setting         | Default        |
 | --------------- | -------------- |
@@ -88,7 +90,7 @@ If you use the guided installation, it should be clear what to do.
 
 ---
 
-### Installation drive rules
+#### Installation drive rules
 
 Do not select a partition - it will not work.
 
@@ -97,7 +99,7 @@ Do not select a partition - it will not work.
 
 The default selection is the largest drive found.
 
-### What the installer does
+#### What the installer does
 
 > **Warning**<br>
 > All data will be erased.
@@ -120,3 +122,119 @@ The installer will:
 Reboot after completion.
 
 If you still see the Live ISO GRUB menu after rebooting, select `Boot existing OS`.
+
+### Manual
+
+To manually install Redrose Linux on your computer, boot the Live ISO and pick manual installation. 
+
+This guide is unfinished, but it is enough for creating a simple bootable system.
+
+#### (QoL) Install Busybox on the Live ISO
+
+Run these commands, so you do not have to worry about prefixing all commands with `busybox`:
+```bash
+mkdir /usr /usr/bin /usr/sbin /sbin
+busybox --install
+export PATH=$PATH:/usr/bin:/sbin:/usr/sbin
+```
+Skipping this step is fine, but you will have to prefix most commands with `busybox`.
+
+#### Identifying the target drive
+
+Use the `fdisk` command:
+```bash
+fdisk -l
+```
+This outputs a list of drives and information about them.
+
+This tutorial will use the `$drive` variable, so set it:
+```bash
+drive=/dev/sda # PICK YOUR ACTUAL DRIVE!
+```
+
+#### Erasing the drive
+
+We will use the `sgdisk` command. This command does not require the `busybox` prefix even without installing; it is an external tool.
+
+```bash
+sgdisk --zap-all $drive
+```
+
+#### Creating partitions and filesystems
+
+Here, we will also use the `sgdisk` command to create partitions. However, we need to know if we are installing on a BIOS or UEFI system.
+
+If this command fails, you are using BIOS:
+```bash
+ls /sys/firmware/efi
+```
+Otherwise, you are on UEFI.
+
+On BIOS, create partitions like this:
+```bash
+sgdisk -n 1:1M:+1M -t 1:ef02 -c 1:\"BIOS boot\" $drive
+sgdisk -n 3:0:0 -t 3:8300 -c 3:\"Redrose Linux\" $drive
+```
+
+On UEFI, replace the BIOS boot command with:
+
+```bash
+sgdisk -n 2:0:+512M -t 2:ef00 -c 1:\"EFI System\" $drive
+```
+
+Run the `partprobe` command after finishing.
+
+Next format the main partition using `mke2fs`:
+```bash
+mke2fs -F /dev/sda3
+```
+
+On BIOS, leave the boot partition as-is. On UEFI, format it with FAT32:
+```bash
+mkfs.vfat -F32 /efi/partition/thing
+```
+
+#### Copy the rootfs files
+
+Mount your root partition on `/mnt`:
+```bash
+mkdir -p /mnt
+mount /drive/part/3 /mount
+```
+
+The rootfs tarball is located in `/rootfs.tar.gz`. 
+```bash
+gzip -dc /rootfs.tar.gz | tar -xvf - -C /mnt --strip-components=1
+```
+
+After this command finished, run `ls /mnt` to check if the files got extracted correctly.
+
+Install busybox:
+```bash
+chroot /mnt /bin/sh -c '/bin/busybox --install'
+```
+
+If you also wish to install a different implementation of `coreutils` and `findutils`, extract these files to `/mnt`:
+- (GNU) `/coreutils-gnu/*.tar.gz`
+- (uutils) `/coreutils-uutils/*.tar.gz`
+
+
+#### Generating important files
+
+Run `mkfstab` to generate `/etc/fstab`:
+- from chroot
+  ```bash
+mkfstab /
+ ```
+- from live
+  ```bash
+/mnt/usr/bin/mkfstab /mnt -o /mnt/etc/os-release
+  ```
+Run `nullinitrd` to generate the initramfs.
+
+#### Install the bootloader, aka. GRUB
+
+To install GRUB, use the `grub-install` command in a chroot. On BIOS, just pass the device name to it:
+```bash
+grub-install $drive
+```

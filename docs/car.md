@@ -26,6 +26,8 @@ Equivalent of `apt update` / `pacman -Sy`.
 car listup
 ```
 
+To enable the propriertary repo, create `/etc/car_propiertary.lock`.
+
 ### `update`
 Update the packagelist, then upgrade all packages. In newer versions of Car, an update can delete or add packages based on what the maintainer says.
 Equivalent of `apt update && apt upgrade` / `pacman -Syu`.
@@ -36,11 +38,21 @@ car update
 
 In newer versions of Car, an update creates the `/etc/car/update` file, following our curated rolling-release cycle, updated on Friday. To force re-updating, delete this file.
 
+#### Adding updates (for maintainers)
+To create an update (done every Friday), you add a line starting with `UPDATE:`.
+A blank update will just contain `:::` after that. What is between the first two `:` is the description. It must be original since it is written to the `/etc/car/update` file.
+The second field is for packages to be added (divided by `,`) and the third one is for packages to be deleted.
+The fourth one is an additional description. Example:
+
+```
+UPDATE:Standard Friday update, 29.05.2026:::No breaking changes.
+```
+
 ### other
-`why` - why is a package installed? (NEW, may not be available)<br>
-`cleanbuild` - rebuild a package, replaced with `fuel` (deprecated)<br>
-`search` - search for a package<br>
-`init` - look at the [inicialization](/car.md#Inicialization) section<br>
+- `why` - why is a package installed? (NEW, may not be available)<br>
+- `cleanbuild` - rebuild a package, replaced with `fuel` (deprecated)<br>
+- `search` - search for a package<br>
+- `init` - look at the [inicialization](/car.md#Inicialization) section<br>
 
 ## Package format
 Car uses a format similar to `.pkg.tar.zst` from `pacman`. A package has to be a zstd-compressed tarball, with a file named `car` inside of it. This is the metadata file.

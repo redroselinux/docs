@@ -52,7 +52,7 @@ UPDATE:Standard Friday update, 29.05.2026:::No breaking changes.
 - `why` - why is a package installed? (NEW, may not be available)<br>
 - `cleanbuild` - rebuild a package, replaced with `fuel` (deprecated)<br>
 - `search` - search for a package<br>
-- `init` - look at the [inicialization](/car.md#Inicialization) section<br>
+- `init` - look at the [initialization](/car.md#Initialization) section<br>
 - `brake` - stop a package from being updated (NEW, may not be available)<br>
 - `release` - let a package be updated again (NEW, may not be available)<br>
 
@@ -112,7 +112,7 @@ All the other files get copied into the root folder. This is an example file tre
 
 Installing a package saves all the files inside of the tarball into a file in `/etc/car/saves`.
 
-## Inicialization
+## Initialization
 
 The `car init` command creates all important files that Car needs to function. It is run during installation of the system. To force init even when it was already done, use it with the `--force` flag.
 

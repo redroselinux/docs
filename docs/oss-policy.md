@@ -9,10 +9,10 @@ For this reason, the decision was made to NOT allow such software by default. Th
 Yes, sadly this is often the case (even for hardware drivers). For that reason, here is a list of alternatives.
 
 * Microsoft Office -> LibreOffice
-* Discord -> Matrix 
-* Photoshop -> GIMP
+* Discord -> Matrix, Fluxer
+* Photoshop -> GIMP, Krita
 * Illustrator -> Inkscape
 * Autodesk Maya -> Blender
-* Google Chrome -> Firefox
+* Google Chrome -> Firefox, Librewolf, Epiphany
 
 Please note that even me, the owner of this Linux distro, uses proprietary software. We know it is hard to avoid, but it is possible to make a world with more privacy by using as much open-source software as we can.

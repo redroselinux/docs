@@ -61,7 +61,7 @@ Now, we can flash the ISO image to our drive.
 
 ```bash
 #       input file                        output      show progress
-sudo dd if=redroselinux/redrose_linux.iso of=/dev/sda status=progess
+sudo dd if=redroselinux/redrose_linux.iso of=/dev/sda status=progress
 ```
 
 After flashing:
@@ -166,6 +166,8 @@ We will use the `sgdisk` command. This command does not require the `busybox` pr
 sgdisk --zap-all $drive
 ```
 
+> In some places `$drive` is not used because we have to specify a specific partition. The problem is some drives end with `p1`, some end with `1` so we let you decide.
+
 #### Creating partitions and filesystems
 
 Here, we will also use the `sgdisk` command to create partitions. However, we need to know if we are installing on a BIOS or UEFI system.
@@ -179,7 +181,7 @@ Otherwise, you are on UEFI.
 On BIOS, create partitions like this:
 ```bash
 sgdisk -n 1:1M:+1M -t 1:ef02 -c 1:\"BIOS boot\" $drive
-sgdisk -n 3:0:0 -t 3:8300 -c 3:\"Redrose Linux\" $drive
+sgdisk -n 3:0:0 -t 3:8300 -c 3:\"Redrose Linux\" $drive # use part no. 3 here, because redrose sometimes expects your drive to be partition 3
 ```
 
 On UEFI, replace the BIOS boot command with:

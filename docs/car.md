@@ -53,6 +53,8 @@ UPDATE:Standard Friday update, 29.05.2026:::No breaking changes.
 - `cleanbuild` - rebuild a package, replaced with `fuel` (deprecated)<br>
 - `search` - search for a package<br>
 - `init` - look at the [inicialization](/car.md#Inicialization) section<br>
+- `brake` - stop a package from being updated (NEW, may not be available)<br>
+- `release` - let a package be updated again (NEW, may not be available)<br>
 
 ## Package format
 Car uses a format similar to `.pkg.tar.zst` from `pacman`. A package has to be a zstd-compressed tarball, with a file named `car` inside of it. This is the metadata file.

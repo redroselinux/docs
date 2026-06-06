@@ -23,7 +23,7 @@ To install Redrose Linux, first download a disk image from the downloads page:
 * ISO download: [https://redroselinux.org/downloads](https://redroselinux.org/downloads)
 * Beta VM launcher: use for quick testing
   ```bash
-curl -s https://redroselinux.org/vm_launcher.sh | sh
+  curl -s https://redroselinux.org/vm_launcher.sh | sh
   ```
 
 SHA256 hashes are available in the GitHub releases page:

@@ -1,7 +1,7 @@
 - [Home](/README.md)
 - [Why another distro?](/why.md)
 - [Security Policy](/security.md)
-- [Contributing Guide](/contributing.md)
+- [Contributing (main repo)](/contributing.md)
 - [OSS Policy](/oss-policy.md)
 - [Install Guide](/install.md)
 - [Build your own Live ISO](/build-your-own-image.md)

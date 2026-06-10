@@ -6,7 +6,6 @@ Before installing, note: this distribution is work in progress. The installer is
 
 > **Note**<br>
 > Redrose Linux was not tested on UEFI systems. It works on BIOS systems (tested in QEMU and on some random old computers).
-> Also, as of May 2026, it uses the `defconfig` kernel configuration, which can also cause some issues on new hardware.
 
 - RAM: ~700MB (for Live ISO)
 - Disk: ~1-2GB

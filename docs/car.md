@@ -19,21 +19,21 @@ car delete example
 ```
 
 ### `list`
-List all installed packages with their versions.
+(3.16+) List all installed packages with their versions.
 
 ```bash
 car list
 ```
 
 ### `tires`
-List files belonging to an installed package.
+(3.16+) List files belonging to an installed package.
 
 ```bash
 car tires example
 ```
 
 ### `addrepo`
-Add a repository/mirror to the mirror list. Mirrors are colon-separated in `/etc/car/mirror`.
+(3.16+) Add a repository/mirror to the mirror list. Mirrors are colon-separated in `/etc/car/mirror`.
 
 ```bash
 car addrepo https://example.com/repo
@@ -69,17 +69,37 @@ The fourth one is an additional description. Example:
 UPDATE:Standard Friday update, 29.05.2026:::No breaking changes.
 ```
 
-### other
-- `why` - why is a package installed?<br>
-- `cleanbuild` - rebuild a package, replaced with `fuel` (deprecated)<br>
-- `search` - search for a package<br>
-- `init` - look at the [initialization](/car.md#Initialization) section<br>
-- `brake` - stop a package from being updated<br>
-- `release` - let a package be updated again<br>
-- `list` - list all installed packages<br>
-- `tires` - list files of an installed package<br>
-- `addrepo` - add a repository/mirror<br>
-- `clearcache` - clear all cache<br>
+### `why`
+Why is a package installed?
+
+```bash
+car why example
+```
+
+### `search`
+Search for a package.
+
+```bash
+car search h
+```
+
+### `brake` / `release`
+Stop a package from being updated / let it be updated again.
+
+```bash
+car brake example
+car release example
+```
+
+### `init`
+Look at the [initialization](/car.md#Initialization) section.
+
+### `clearcache`
+Clear all cache.
+
+```bash
+car clearcache
+```
 
 ## Package format
 Car uses a format similar to `.pkg.tar.zst` from `pacman`. A package has to be a zstd-compressed tarball, with a file named `car` inside of it. This is the metadata file.
@@ -105,34 +125,15 @@ exec rm /bin/postinst
 
 All the other files get copied into the root folder. This is an example file tree, from the `dbus` package:
 ```
-├── car
+├── car                  <- the metadata file
 ├── etc
-│   ├── dbus-1
-│   │   ├── session.conf
-│   │   └── system.conf
-│   └── sv                            <- make sure your packages services go to sv, not service
+│   ├── ...
+│   └── sv               <- make sure your packages services go to sv, not service
 │       └── dbus
 │           ├── log
 │           │   └── run
 │           └── run
-├── run
-│   └── dbus
-├── usr
-│   ├── bin
-│   │   ├── ...
-│   ├── include
-│   │   └── dbus-1.0
-│   │       └── dbus
-│   │           ├── ...
-│   ├── lib64
-│   │   ...
-│   ├── libexec
-│   │   └── dbus-daemon-launch-helper
-│   └── share
-│       ├── ...
-└── var
-    └── lib
-        └── dbus
+└── ...
 ```
 
 Installing a package saves all the files inside of the tarball into a file in `/etc/car/saves`.

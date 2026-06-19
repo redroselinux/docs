@@ -1,8 +1,7 @@
 # Filesystem Hierarchy Structure
 
-Redrose Linux uses a very simple FHS. All of the `/usr` and `/` paths are symlinked, where `/` folders are symlinks to the `/usr` ones.
+Redrose Linux uses a very simple FHS. UsrMerge paths are symlinked, where `/` folders are symlinks to the `/usr` ones.
 
-- `/`: the root of the filesystem; everything is located under this directory.
 - `/bin` `/usr/bin`: programs for normal users (`cp`, `rm`, `mkdir`, `cat`, `ls`...).
 - `/sbin` `/usr/sbin`: programs for system administration (`fdisk`, `grub-install`, `fsck`...).
 - `/lib` `/usr/lib`: shared libraries used by dynamically linked programs.

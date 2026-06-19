@@ -4,7 +4,7 @@ Car is a package manager made for Redrose Linux. It is created to be very minima
 
 ## Most used commands
 ### `install`
-Install packages.
+Install packages. Supports Car `.tar.zst`, Pacman `.pkg.tar.zst`, AppImage, and DPKG `.deb` packages.
 
 ```bash
 car install example
@@ -18,9 +18,30 @@ Delete packages based on the `/etc/car/saves` files.
 car delete example
 ```
 
+### `list`
+List all installed packages with their versions.
+
+```bash
+car list
+```
+
+### `tires`
+List files belonging to an installed package.
+
+```bash
+car tires example
+```
+
+### `addrepo`
+Add a repository/mirror to the mirror list. Mirrors are colon-separated in `/etc/car/mirror`.
+
+```bash
+car addrepo https://example.com/repo
+```
+
 ### `listup`
 Update the packagelist. Do not confuse with `update`.
-Equivalent of `apt update` / `pacman -Sy`.
+Equivalent of `apt update` / `pacman -Sy`. Supports multiple mirrors separated by `:` in `/etc/car/mirror`.
 
 ```bash
 car listup
@@ -49,12 +70,16 @@ UPDATE:Standard Friday update, 29.05.2026:::No breaking changes.
 ```
 
 ### other
-- `why` - why is a package installed? (NEW, may not be available)<br>
+- `why` - why is a package installed?<br>
 - `cleanbuild` - rebuild a package, replaced with `fuel` (deprecated)<br>
 - `search` - search for a package<br>
 - `init` - look at the [initialization](/car.md#Initialization) section<br>
-- `brake` - stop a package from being updated (NEW, may not be available)<br>
-- `release` - let a package be updated again (NEW, may not be available)<br>
+- `brake` - stop a package from being updated<br>
+- `release` - let a package be updated again<br>
+- `list` - list all installed packages<br>
+- `tires` - list files of an installed package<br>
+- `addrepo` - add a repository/mirror<br>
+- `clearcache` - clear all cache<br>
 
 ## Package format
 Car uses a format similar to `.pkg.tar.zst` from `pacman`. A package has to be a zstd-compressed tarball, with a file named `car` inside of it. This is the metadata file.
@@ -129,4 +154,49 @@ Then run the build command:
 
 ```bash
 nimble build
+```
+
+# car-repo-init
+
+## Building from source
+
+Quick install; no package for now
+```bash
+git clone https://github.com/redroselinux/car-repo-init --depth 1
+cd car-repo-init
+dub build
+sudo cp ./car-repo-init /usr/bin
+cd ..
+rm -rf car-repo-init
+```
+
+## Quick overview
+`car-repo-init` is a tool for generating package repository listings from Car packages.
+
+It scans a directory for `.tar.zst` files, extracts each one, reads the `car` metadata, and makes `packagelist` and `packagelist_long` files.
+
+## Usage
+
+```bash
+car-repo-init gen -p https://example.com/repo/
+```
+
+Flags:
+- `-p` (required) - URL prefix for the packages
+- `-o` (optional, default: `packagelist`) - output file name
+  The long packagelist name is derived from this; if `-o` is `smth`, the long packagelist goes to `smth_long`
+- `-d` (optional, default: `.`) - directory to scan for `.tar.zst` files
+
+## Output
+
+- `packagelist` - package name, version
+- `packagelist_long` - also includes dependency information
+
+## Generating a website
+
+The `gen-site.sh` script converts `packagelist_long` into an HTML page
+with repository info (currently unused in Redrose sites):
+
+```bash
+./gen-site.sh packagelist_long index.html
 ```

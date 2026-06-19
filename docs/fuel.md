@@ -43,7 +43,7 @@ Build a package in the `fuelpkgs/` directory. Example:
 ### Formatting (`{{{var}}}`)
 You can include a variable inside of another one by using `{{{}}}`, for example:
 ```
-PackageSource = "https://ftp.gnu.org/gnu/{{{PackageName}}}/{{{PackageName}}}-{{{PackageVersion}}}.tar.gz"
+PackageSource = "https://ftp.gnu.org/gnu/{{{PackageName}}}/{{{PackageName}}}-{{{PackageVersion}}}.tar.gz";
 ```
 
 ### `PackageName`
@@ -94,3 +94,29 @@ custom make
 
 ### `BuildSystem.InstallCommand`
 The command to install the package into a staging directory. `--DESTINATION--` expands to the staging dir.
+
+## Examples
+
+### libcp
+```
+PackageName = "libcp";
+PackageVersion = "0.1";
+PackageSource = "https://github.com/redroselinux/libcp/archive/refs/tags/v{{{PackageVersion}}}.tar.gz";
+CompilingWeight = "tiny";
+PackageDeps = "";
+BuildSystem = "custom make";
+BuildSystem.InstallCommand = "mkdir -p package/usr package/usr/bin && cp libcp package/usr/bin";
+```
+
+### tar
+
+```
+PackageName = "tar";
+PackageVersion = "1.35";
+PackageSource = "https://ftp.gnu.org/gnu/{{{PackageName}}}/{{{PackageName}}}-{{{PackageVersion}}}.tar.xz";
+PackageSourceSig = "https://ftp.gnu.org/gnu/{{{PackageName}}}/{{{PackageName}}}-{{{PackageVersion}}}.tar.xz.sig";
+PackageDeps = "acl";
+CompilingWeight = "small-to-medium";
+BuildSystem = "autoconf CONFIGUREOPTS <<RedroseStandardConfigureOpts>> >> MAKEOPTS -j4 >>";
+BuildSystem.InstallCommand = "DESTDIR=--DESTINATION-- make install";
+```

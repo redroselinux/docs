@@ -1,4 +1,5 @@
 - [Home](/README.md)
+- [Roadmap](/roadmap.md)
 - [Why another distro?](/why.md)
 - [Security Policy](/security.md)
 - [Contributing (main repo)](/contributing.md)

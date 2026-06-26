@@ -47,6 +47,10 @@ Equivalent of `apt update` / `pacman -Sy`. Supports multiple mirrors separated b
 car listup
 ```
 
+Note about repos:
+- We will move our repo from Github to a normal server as the repo grows
+- We will provide a tool to mirror the repo to your server so you can contribute a mirror.
+
 To enable the propriertary repo, create `/etc/car_propiertary.lock`.
 
 ### `update`

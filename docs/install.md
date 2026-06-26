@@ -19,7 +19,7 @@ Before installing, note: this distribution is work in progress. The installer is
 
 To install Redrose Linux, first download a disk image from the downloads page:
 
-* ISO download: [https://redroselinux.org/downloads](https://redroselinux.org/downloads)
+* ISO download: [https://redroselinux.org/downloads](https://redroselinux.org/download)
 * Beta VM launcher: use for quick testing
   ```bash
   curl -s https://redroselinux.org/vm_launcher.sh | sh

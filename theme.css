@@ -1,0 +1,67 @@
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+#app h1 {
+    margin: 0 0 0.5rem;
+}
+
+#app span {
+    margin: 0;
+}
+
+:root {
+    --theme-color: #e74c3c;
+    --base-background-color: #120000;
+    --sidebar-background: #0f0f0f;
+    --code-theme-background: #0a0a0a;
+    --search-input-background-color: #0f0f0f;
+    --sidebar-nav-link-color: lightgray;
+    --blockquote-background: rgba(231, 76, 60, 0.08);
+    --blockquote-border-color: #e74c3c;
+    --notice-background: rgba(231, 76, 60, 0.1);
+    --notice-border-color: #e74c3c;
+    --border-color: rgba(255,255,255,0.08);
+    --table-head-background: #0f0f0f;
+    --table-row-even-background: rgba(255,255,255,0.02);
+    --sidebar-nav-link-background-color--hover: rgba(255,255,255,0.08);
+    --selection-background: #e74c3c;
+    --selection-color: #120000;
+    --sidebar-nav-link-color--active: #e74c3c;
+    --sidebar-nav-link-font-weight--active: 600;
+    --sidebar-nav-link-border-color--active: #e74c3c;
+    --sidebar-name-color: #fff;
+    --code-theme-color: #f0f0f0;
+}
+
+.sidebar {
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.sidebar > h1,
+.sidebar .app-name-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sidebar ul li a:hover {
+    color: #fff;
+}
+
+.markdown-section pre {
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+}
+
+.markdown-section code {
+    background: rgba(255,255,255,0.06);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}

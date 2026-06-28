@@ -19,7 +19,7 @@ Before installing, note: this distribution is work in progress. The installer is
 
 To install Redrose Linux, first download a disk image from the downloads page:
 
-* ISO download: [https://redroselinux.org/downloads](https://redroselinux.org/download)
+* ISO download: [https://redroselinux.org/download](https://redroselinux.org/download)
 * Beta VM launcher: use for quick testing
   ```bash
   curl -s https://redroselinux.org/vm_launcher.sh | sh
@@ -59,8 +59,8 @@ Now, we can flash the ISO image to our drive.
 > This is destructive. All data on the target drive will be erased.
 
 ```bash
-#       input file                        output      show progress
-sudo dd if=redroselinux/redrose_linux.iso of=/dev/sda status=progress
+#       input file                        output      show progress   faster copying
+sudo dd if=redroselinux/redrose_linux.iso of=/dev/sda status=progress bs=100M
 ```
 
 After flashing:
@@ -209,6 +209,9 @@ mkdir -p /mnt
 mount /drive/part/3 /mount
 ```
 
+> **Warning**<br>
+> The reason $drive was not used above is that different types of drives have different blockdev names for partitions.
+
 The rootfs tarball is located in `/rootfs.tar.gz`. 
 ```bash
 gzip -dc /rootfs.tar.gz | tar -xvf - -C /mnt --strip-components=1
@@ -225,7 +228,6 @@ If you also wish to install a different implementation of `coreutils` and `findu
 - (GNU) `/coreutils-gnu/*.tar.gz`
 - (uutils) `/coreutils-uutils/*.tar.gz`
 
-
 #### Generating important files
 
 Run `mkfstab` to generate `/etc/fstab`:
@@ -233,7 +235,7 @@ Run `mkfstab` to generate `/etc/fstab`:
   ```bash
 mkfstab /
  ```
-- from live
+- or from live
   ```bash
 /mnt/usr/bin/mkfstab /mnt -o /mnt/etc/os-release
   ```

@@ -41,7 +41,7 @@ car addrepo https://example.com/repo
 
 ### `listup`
 Update the packagelist. Do not confuse with `update`.
-Equivalent of `apt update` / `pacman -Sy`. Supports multiple mirrors separated by `:` in `/etc/car/mirror`.
+Equivalent of `apt update` / `pacman -Sy`.
 
 ```bash
 car listup
@@ -51,7 +51,14 @@ Note about repos:
 - We will move our repo from Github to a normal server as the repo grows
 - We will provide a tool to mirror the repo to your server so you can contribute a mirror.
 
-To enable the propriertary repo, create `/etc/car_propiertary.lock`.
+To enable the propriertary repo, create `/etc/car_propiertary.lock`. This is a legacy way to do it, but
+it is already heavily used in documentation, old Car version, the Redrose installer. 
+
+A better way to add repos is multiple mirrors/repos separated by `:` in `/etc/car/mirror`:
+```
+https://example.com/carrepo_packagelist : https://myrepo.org/car/packagelist
+```
+Car handles the `://` in `https://` and skips it so the URL does not break.
 
 ### `update`
 Update the packagelist, then upgrade all packages. In newer versions of Car, an update can delete or add packages based on what the maintainer says.
@@ -61,9 +68,10 @@ Equivalent of `apt update && apt upgrade` / `pacman -Syu`.
 car update
 ```
 
-In newer versions of Car, an update creates the `/etc/car/update` file, following our curated rolling-release cycle, updated on Friday. To force re-updating, delete this file.
+In newer versions of Car, an update creates the `/etc/car/update` file, following our curated rolling-release cycle, updated on Friday. To force re-updating, delete this file (if the file is not identical to the new updated version, Car refuses to update).
 
 #### Adding updates (for maintainers)
+
 To create an update (done every Friday), you add a line starting with `UPDATE:`.
 A blank update will just contain `:::` after that. What is between the first two `:` is the description. It must be original since it is written to the `/etc/car/update` file.
 The second field is for packages to be added (divided by `,`) and the third one is for packages to be deleted.
@@ -72,6 +80,17 @@ The fourth one is an additional description. Example:
 ```
 UPDATE:Standard Friday update, 29.05.2026:::No breaking changes.
 ```
+
+Outputs:
+
+```
+→ Updating package list
+→ ...
+→ Standard Friday update, 29.05.2026
+→ No breaking changes.
+...
+```
+
 
 ### `why`
 Why is a package installed?
@@ -88,7 +107,7 @@ car search h
 ```
 
 ### `brake` / `release`
-Stop a package from being updated / let it be updated again.
+Pin a package to its current version (do not update it) / unpin it.
 
 ```bash
 car brake example
@@ -115,12 +134,12 @@ Fields:
 version 0.1
   ```
 * `dep`
-  A dependency of the package. Each dependency gets collected and in the end it does matter that all the packages get installed. Man, cars try so hard they burn themselves down, oh, the wastelands of today. We need to unshatter the car or let it fade. I love linkin park
+  A dependency of the package. Each dependency gets collected and in the end it does matter that all the packages get installed. (linkin park ref)
   ```
 dep libffi
   ```
 * `exec`
-  Execute a command that may unshatter the car.
+  Execute a command after installation.
   ```
 exec /bin/postinst
 exec rm /bin/postinst
@@ -133,7 +152,7 @@ All the other files get copied into the root folder. This is an example file tre
 ├── etc
 │   ├── ...
 │   └── sv               <- make sure your packages services go to sv, not service
-│       └── dbus
+│       └── dbus            (unless your package is a core package, do not symlink to /etc/service to enable it)
 │           ├── log
 │           │   └── run
 │           └── run

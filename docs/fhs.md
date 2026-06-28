@@ -45,3 +45,8 @@ A file containing a list of all installed Car packages. It should also be rename
 
 ### `mtab`
 A symlink to `/proc/mounts`.
+
+## `/usr/share`
+
+### `consolefonts`
+Read [`terminus-font` docs](/package-docs/terminus-font.md).

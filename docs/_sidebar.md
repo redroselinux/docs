@@ -7,6 +7,7 @@
 - [Install Guide](/install.md)
 - [Build your own Live ISO](/build-your-own-image.md)
 - [`car` (package manager)](/car.md)
+- [Package documentation](/package-docs.md)
 - [`fuel`](/fuel.md)
 - [`news-reader`](/news-reader.md)
 - [`mkfstab`](/mkfstab.md)

@@ -247,3 +247,7 @@ To install GRUB, use the `grub-install` command in a chroot. On BIOS, just pass 
 ```bash
 grub-install $drive
 ```
+
+## Using the installed system
+
+Some basic setup can be found in [this category](/installed-system/index.md).

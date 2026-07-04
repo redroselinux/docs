@@ -2,10 +2,10 @@
 
 This page contains our plans of what to do in Redrose.
 
-- Fix `iwd` [work in progress, almost done]
+- Fix `iwd` [done, must finish some extra stuff then release alpha0.6]
 - Add tools for Car like a better builder than fuel [[work in progress]](https://github.com/redroselinux/cartools)
   - Make the builder an alternative PM for Redrose making us a hybrid distro
-- Rewrite the installer in Go with [Bubble Tea](https://github.com/charmbracelet/bubbletea) or [Huh](https://github.com/charmbracelet/huh)
+- Rewrite the installer
   - Remove the need for Busybox everywhere 
   - Fix all little quirks of the current installer
 - Rewrite the ISO builder in C++

@@ -1,4 +1,4 @@
-Redrose Linux is meant to use mainly EU software, while '''all''' of it is ment to be OSS. You can still [install propriertary software](/car.md?id=listup). If you try to submit anything that is proprietary, we will not accept it.
+Redrose Linux is meant to use mainly EU software, while **all** of it is ment to be OSS. You can still [install propriertary software](/car.md?id=listup). If you try to submit anything that is proprietary to standard repos, we will not accept it.
 
 ## Why?
 Proprietary software gives you the risk of installing something that will execute code that you do not know about. Yes, this means that some of you are using proprietary software to view this and are under that risk.
@@ -13,6 +13,6 @@ Yes, sadly this is often the case (even for hardware drivers). For that reason, 
 * Photoshop -> GIMP, Krita
 * Illustrator -> Inkscape
 * Autodesk Maya -> Blender
-* Google Chrome -> Firefox, Librewolf, Epiphany
+* Google Chrome -> Librewolf, Epiphany
 
 Please note that even me, the owner of this Linux distro, uses proprietary software. We know it is hard to avoid, but it is possible to make a world with more privacy by using as much open-source software as we can.

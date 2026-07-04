@@ -1,5 +1,8 @@
 # Build your own Live ISO
 
+> **Warning**<br>
+> After alpha-0.6 releases, we plan to replace the current Makefile with a full program like `archiso`.
+
 To build your own Redrose Linux ISO image, you need to install some tools, clone the source and start the building process.
 
 ## Downloading the source code

@@ -21,7 +21,7 @@ Redrose Linux uses a very simple FHS. UsrMerge paths are symlinked, where `/` fo
 - `/boot`: bootloader files, kernel and initrd images, etc.
 
 > **Where is /opt?**
-> We already have /usr/local, and writing to the standard directories is already simpler.
+> We already have /usr/local (we hate /usr/local), and writing to the standard directories is already simpler.
 
 ## `/etc`
 

@@ -1,5 +1,8 @@
 # fuel
 
+> **Warning**<br>
+> Fuel will be replaced with a new program. 
+
 `fuel` is a source-based package manager compiling packages for Car. It does not have a package because of its file layout; you will need to clone it and compile the binary.
 
 ## Building from source

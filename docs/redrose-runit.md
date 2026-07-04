@@ -1,5 +1,8 @@
 # redrose-runit
 
+> **Warning**<br>
+> redrose-runit sucks. It will be rewritten under the name BaseD.
+
 Redrose-runit (short: runquit) is an init system based on Runit.
 
 The only Redrose-specific changes are that we have edited the source code to be packaged as a Car package and we expect /etc/service.

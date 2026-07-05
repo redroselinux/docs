@@ -3,5 +3,5 @@ In section: Package Docs
 
 ---
 
-- [Virtual consoles](/installed-system/tty.md)
+- [terminus-font](/package-docs/terminus-font.md)
 - [Package Docs Home](/package-docs/index.md)

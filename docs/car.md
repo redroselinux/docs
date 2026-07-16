@@ -4,11 +4,18 @@ Car is a package manager made for Redrose Linux. It is created to be very minima
 
 ## Most used commands
 ### `install`
+
 Install packages. Supports Car `.tar.zst`, Pacman `.pkg.tar.zst`, AppImage, and DPKG `.deb` packages.
 
 ```bash
 car install example
 ```
+
+When downloading, Car does hash checks if `/etc/car/sha256-enable` exists. You can disable them for one run by using `--skip-sha256`.
+
+Files are tracked in `/etc/car/saves/<pkg>`.
+Remote Car packages are downloaded in parralel.
+
 Aliases: `i`, `get`
 
 ### `delete`
@@ -51,13 +58,14 @@ Note about repos:
 - We will move our repo from Github to a normal server as the repo grows
 - We will provide a tool to mirror the repo to your server so you can contribute a mirror.
 
-To enable the propriertary repo, create `/etc/car_propiertary.lock`. This is a legacy way to do it, but
-it is already heavily used in documentation, old Car version, the Redrose installer. 
+When `car init` is run, repos are selected by the user.
+However, `car init` is now mostly for reiniting, as the Redrose installer uses/will use the hidden `installer-init` command.
+Set multiple mirrors/repos separated by `:` in `/etc/car/mirror`:
+```
+https://example.com/carrepo_packagelist:https://myrepo.org/car/packagelist
+```
+Use the `addrepo` command for adding repos.
 
-A better way to add repos is multiple mirrors/repos separated by `:` in `/etc/car/mirror`:
-```
-https://example.com/carrepo_packagelist : https://myrepo.org/car/packagelist
-```
 Car handles the `://` in `https://` and skips it so the URL does not break.
 
 ### `update`
@@ -69,6 +77,8 @@ car update
 ```
 
 In newer versions of Car, an update creates the `/etc/car/update` file, following our curated rolling-release cycle, updated on Friday. To force re-updating, delete this file (if the file is not identical to the new updated version, Car refuses to update).
+
+(+3.18) Car can now update itself! Every update, it checks if a new Car version has been released.
 
 #### Adding updates (for maintainers)
 
@@ -115,7 +125,10 @@ car release example
 ```
 
 ### `init`
-Look at the [initialization](/car.md#Initialization) section.
+The `car init` command creates all important files that Car needs to function. It is run during installation of the system. To force init even when it was already done, use it with the `--force` flag.
+
+When `car init` is run, repos are selected by the user.
+However, `car init` is now mostly for reiniting, as the Redrose installer uses/will use the hidden `installer-init` command.
 
 ### `clearcache`
 Clear all cache.
@@ -161,9 +174,14 @@ All the other files get copied into the root folder. This is an example file tre
 
 Installing a package saves all the files inside of the tarball into a file in `/etc/car/saves`.
 
-## Initialization
+## Packagelist format
 
-The `car init` command creates all important files that Car needs to function. It is run during installation of the system. To force init even when it was already done, use it with the `--force` flag.
+```
+packagename - downloadurl - sha256
+version v0.1
+```
+
+The parses splits by ` - `; you cannot remove the spaces!
 
 ## Building from source
 

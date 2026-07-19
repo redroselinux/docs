@@ -4,7 +4,6 @@ This page contains our plans of what to do in Redrose.
 
 ## Current
 
-- Fix `iwd` [done, must finish some extra stuff then release alpha0.6]
 - Fix the `news-reader` sidebar on our website showing old articles
 - Rewrite the installer
   - Remove the need for Busybox everywhere 

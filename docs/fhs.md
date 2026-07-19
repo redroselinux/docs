@@ -38,7 +38,7 @@ A file copied while bootstrapping the rootfs. It contains all packages from `roo
 Configuration files for our package manager, [Car](/car.md).
 
 ### `car_propiertary.lock`
-A file created when propriertary software is enabled. The name contains a typo, however it cannot be removed as it is already being used; we are planning to use a symlink.
+A legacy file used to enable the propriertary repo. It is no longer used. Yes, that is a typo.
 
 ### `repro.car`
 A file containing a list of all installed Car packages. It should also be renamed but the reason it is not is again, it is used already. This one in particular is used ever since Car 0.1 was created.

@@ -7,7 +7,7 @@ Before installing, note: this distribution is work in progress. The installer is
 > **Note**<br>
 > Redrose Linux was not tested on UEFI systems. It works on BIOS systems (tested in QEMU and on some random old computers).
 
-- RAM: ~700MB (for Live ISO)
+- RAM: ~1GB
 - Disk: ~1-2GB
 - Flash drive size: ~500MB
 - Ventoy support: untested, likely yes

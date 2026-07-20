@@ -51,3 +51,5 @@ On Fedora, GRUB commands are prefixed with `grub2-`. The Makefile tries to detec
 ## Starting compilation
 
 Simply run the `make` command. This also spins up a VM; if you do not want this, run `make no-vm`. Parallel builds are not supported. Our current build system is a mess - we will rewrite it anyway. [Roadmap!](/roadmap.md)
+
+To build a Docker image, read [the docs on that topic](/docker-img.md).

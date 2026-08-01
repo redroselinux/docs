@@ -1,7 +1,9 @@
 # fuel
 
 > **Warning**<br>
-> Fuel will be replaced with a new program. 
+> Fuel was replaced by Ancestor!
+
+# FUEL IS NO LONGER USED! IT WAS REPLACED BY THE NEW BULD SYSTEM, ANCESTOR!
 
 `fuel` is a source-based package manager compiling packages for Car. It does not have a package because of its file layout; you will need to clone it and compile the binary.
 

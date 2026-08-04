@@ -3,7 +3,7 @@
 - [Why another distro?](/why.md)
 - [FAQ](/faq.md)
 - [Security Policy](/security.md)
-- [Contributing (main repo)](/contributing.md)
+- [Contributing](/contributing.md)
 - [OSS Policy](/oss-policy.md)
 - [Install Guide](/install.md)
 - [Using the installed system](/installed-system/index.md)

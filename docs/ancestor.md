@@ -106,6 +106,8 @@ download :: git :: url :: checkout
 -- checkout can be 'auto' to derive from set version
 ```
 
+You can use URL shortcuts: `hub:` is replaced with `https://github.com/`, `lab:` is replaced with `https://gitlab.com/` and `cberg:` is replaced with `https://codeberg.org/`.
+
 #### type `manual`
 
 ```
@@ -149,6 +151,10 @@ If you don't know: `dub` is the Dlang build system.
 ```
 build :: dub_single_bin :: bin_name
 ```
+
+### type `go_single_bin` and `cargo_single_bin`
+
+Works basically the same as `dub_single_bin`.
 
 ### property `install_cmd`
 

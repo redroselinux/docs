@@ -1,5 +1,8 @@
 # Redrose Linux Installation
 
+> **Important**<br>
+> The Redrose Linux installer is being rewritten and the first release with the new installer will be alpha-0.7.
+
 Before installing, note: this distribution is work in progress. The installer is simple, but not easier than installing Ubuntu.
 
 ## System requirements

@@ -1,10 +1,18 @@
-# Build a Docker image
+# Redrose Linux Docker Image
 
-## Cloning the repo
+## Download
+
+```bash
+docker pull ghcr.io/redroselinux/redroselinux:latest
+```
+
+## Build
+
+### Cloning the repo
 
 Follow the instructions in [the ISO building docs](/build-your-own-image.md).
 
-## Building
+### Building
 
 Use the `docker` make target:
 

@@ -1,14 +1,11 @@
 # Redrose Linux Installation
 
-> **Important**<br>
-> The Redrose Linux installer is being rewritten and the first release with the new installer will be alpha-0.7.
-
 Before installing, note: this distribution is work in progress. The installer is simple, but not easier than installing Ubuntu.
 
 ## System requirements
 
 > **Note**<br>
-> Redrose Linux was not tested on UEFI systems. It works on BIOS systems (tested in QEMU and on some random old computers).
+> Redrose Linux currently supports BIOS systems only (tested in QEMU and on some random old computers). UEFI systems are not supported yet. NVMe drives are not supported either.
 
 - RAM: ~1GB
 - Disk: ~1-2GB
@@ -77,55 +74,57 @@ After flashing:
 
 ## Using the installer
 
-![GRUB menu](#/images/GRUB_menu.png)
-
-Boot the installer by pressing the ENTER key, and waiting for it to load. Then pick an install mode - guided or manual.
+Boot the installer by pressing the ENTER key, and waiting for it to load. You will then be asked to choose between a guided and a manual installation.
 
 ### Guided
+
+The installer asks for everything and shows the default value in the prompt - pressing ENTER picks the default.
 
 #### Default settings
 
 | Setting         | Default        |
 | --------------- | -------------- |
 | Keyboard layout | us             |
-| Locale          | us             |
-| Timezone        | UTC            |
+| Timezone        | Europe/London  |
 | Username        | redrose        |
 | User password   | redrose        |
 | Root password   | redrose        |
 | Hostname        | iuseredrosebtw |
 | Coreutils       | GNU            |
+| GRUB            | installed      |
 
----
+> **Note**<br>
+> The keyboard layout and timezone are asked, but not applied yet. This is planned for a future release.
 
-#### Installation drive rules
-
-Do not select a partition - it will not work.
-
-* Drives: `/dev/sda`, `/dev/nvme0n1`
-* Partitions: `/dev/sda1`, `/dev/nvme0n1p1`
-
-The default selection is the largest drive found.
+> **Note**<br>
+> To skip creating a user account, set the username to `root` and answer yes to the following prompt.
 
 #### What the installer does
 
 > **Warning**<br>
-> All data will be erased.
+> All data on the selected drive will be erased.
 
 The installer will:
 
-* wipe disk
-* create partitions
-* copy system files (from `/rootfs.tar.gz`)
-* install GRUB
-* configure users, hostname, etc.
-* ask which coreutils to use
-* optionally chroot (default: no)
-* optionally open shell (default: no)
-* unmount system
-* finish install
+* wipe the selected drive
+* create partitions (a boot partition and a root partition)
+* create filesystems (ext4 root)
+* mount the root filesystem
+* extract the base system (from `/rootfs.tar.gz`)
+* install busybox and the chosen coreutils
+* create the user and set passwords
+* set the hostname
+* initialize Car
+* generate the initramfs
+* install GRUB (unless you declined)
+* generate `/etc/fstab`
+* set up D-Bus
 
-![Partitioning](#/images/Drive_selection_in_the_installer.png)
+Before anything happens, you get a summary of your choices and a confirmation prompt.
+
+If a step fails, you can choose whether to continue anyway or reboot.
+
+After the installation finishes, you can optionally chroot into the new system or open a shell in the live environment. Pressing ENTER then reboots the machine.
 
 Reboot after completion.
 
@@ -180,28 +179,29 @@ ls /sys/firmware/efi
 ```
 Otherwise, you are on UEFI.
 
+Partitioning uses the same scheme as the guided installer: partition 1 is root, partition 2 is the boot partition.
+
 On BIOS, create partitions like this:
 ```bash
-sgdisk -n 1:1M:+1M -t 1:ef02 -c 1:\"BIOS boot\" $drive
-sgdisk -n 3:0:0 -t 3:8300 -c 3:\"Redrose Linux\" $drive # use part no. 3 here, because redrose sometimes expects your drive to be partition 3
+sgdisk --new=2:0:+1M -t 2:ef02 -c 2:\"BIOS boot\" $drive
+sgdisk -n 1:0:0 -t 1:8300 -c 1:\"Redrose Linux\" $drive
 ```
 
 On UEFI, replace the BIOS boot command with:
-
 ```bash
-sgdisk -n 2:0:+512M -t 2:ef00 -c 1:\"EFI System\" $drive
+sgdisk --new=2:0:+512M -t 2:ef01 -c 2:\"EFI System\" $drive
 ```
 
 Run the `partprobe` command after finishing.
 
-Next format the main partition using `mke2fs`:
+Next, format the root partition:
 ```bash
-mke2fs -F /dev/sda3
+mkfs.ext4 -F /dev/sda1
 ```
 
 On BIOS, leave the boot partition as-is. On UEFI, format it with FAT32:
 ```bash
-mkfs.vfat -F32 /efi/partition/thing
+mkfs.vfat -F 32 /dev/sda2
 ```
 
 #### Copy the rootfs files
@@ -209,7 +209,7 @@ mkfs.vfat -F32 /efi/partition/thing
 Mount your root partition on `/mnt`:
 ```bash
 mkdir -p /mnt
-mount /drive/part/3 /mount
+mount /drive/part/1 /mnt
 ```
 
 > **Warning**<br>
@@ -240,7 +240,7 @@ mkfstab /
  ```
 - or from live
   ```bash
-/mnt/usr/bin/mkfstab /mnt -o /mnt/etc/os-release
+/mnt/usr/bin/mkfstab /mnt -o /mnt/etc/fstab
   ```
 Run `nullinitrd` to generate the initramfs.
 

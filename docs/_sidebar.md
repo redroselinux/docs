@@ -8,7 +8,7 @@
 - [Install Guide](/install.md)
 - [Using the installed system](/installed-system/index.md)
 - [Build your own Live ISO](/build-your-own-image.md)
-- [Build a Docker image](/docker-img.md)
+- [Docker image](/docker-img.md)
 - [`car` (package manager)](/car.md)
 - [Package documentation](/package-docs/index.md)
 - [`ancestor`](/ancestor.md)

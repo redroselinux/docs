@@ -4,11 +4,9 @@ This page contains our plans of what to do in Redrose.
 
 ## Current
 
-- Fix the `news-reader` sidebar on our website showing old articles
-- Rewrite the installer
-  - Remove the need for Busybox everywhere 
-  - Fix all little quirks of the current installer
-- Rewrite the ISO builder in C++
+- Potentially rewrite Car in C as a lib called rac??
+- Rewrite the ISO builder in C or C++ or Odin or or or idk
+  - Remove the hard busybox dep 
   - Handle package dependencies cleanly
   - Handle chroot execution cleanly
   - Optimize as much as possible

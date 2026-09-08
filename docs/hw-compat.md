@@ -5,3 +5,4 @@ This page lists some hardware models and their compatibility with Redrose Linux.
 | Model               | Status | Notes                        |
 |---------------------|--------|------------------------------|
 | *any UEFI computer* | ❌      | Hangs on `Loading initramfs` |
+| *NVMe drives*       | ❌      |                              |

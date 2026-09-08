@@ -26,7 +26,7 @@ git clone https://github.com/redroselinux/redrose-runit
 cd redrose-runit
 ```
 
-Simply run: 
+Simply run:
 
 ```bash
 make

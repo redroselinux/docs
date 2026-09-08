@@ -41,5 +41,3 @@ car install coreutils findutils
 ```bash
 car install uu-coreutils uu-findutils
 ```
-
-

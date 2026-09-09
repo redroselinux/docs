@@ -1,6 +1,6 @@
 # Virtual Consoles
 
-Unlike most distributions which create 6 TTYs, Redrose creates 8. As of alpha-0.3->0.7 they is/will be spawned using Busybox `getty`. Each TTY has its own service named `tty<num>`, for example `tty8`. 
+Unlike most distributions which create 6 TTYs, Redrose creates 8. As of alpha-0.3->0.7 they is/will be spawned using Busybox `getty`. Each TTY has its own service named `tty<num>`, for example `tty8`.
 
 Each service has a `finish` script, which simply runs `clear`.
 

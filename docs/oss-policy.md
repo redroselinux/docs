@@ -1,4 +1,4 @@
-Redrose Linux is meant to use mainly EU software, while **all** of it is ment to be OSS. You can still [install propriertary software](/car.md?id=listup). If you try to submit anything that is proprietary to standard repos, we will not accept it.
+Redrose Linux is meant to use mainly EU software, while **all** of it is meant to be OSS. You can still [install proprietary software](/car.md?id=listup). If you try to submit anything that is proprietary to standard repos, we will not accept it.
 
 ## Why?
 Proprietary software gives you the risk of installing something that will execute code that you do not know about. Yes, this means that some of you are using proprietary software to view this and are under that risk.

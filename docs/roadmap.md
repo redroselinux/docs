@@ -6,14 +6,14 @@ This page contains our plans of what to do in Redrose.
 
 - Potentially rewrite Car in C as a lib called rac??
 - Rewrite the ISO builder in C or C++ or Odin or or or idk
-  - Remove the hard busybox dep 
+  - Remove the hard busybox dep
   - Handle package dependencies cleanly
   - Handle chroot execution cleanly
   - Optimize as much as possible
     - Asynchronous package install (saving multiple seconds)
     - Use `pgzip` (saving multiple seconds)
 - Fix stuff like fonts in console and all little design and UX quirks
-- Rewrite `redrose-runit` in C++ with a better codebase and better deps, etc 
+- Rewrite `redrose-runit` in C++ with a better codebase and better deps, etc
 - Try to support as much hardware as possible
 - Add a tool to mirror our repos on your own servers
 

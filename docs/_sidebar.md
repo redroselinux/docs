@@ -5,6 +5,7 @@
 - [Security Policy](/security.md)
 - [Contributing](/contributing.md)
 - [OSS Policy](/oss-policy.md)
+- [Hardware Compatibility](/hw-compat.md)
 - [Install Guide](/install.md)
 - [Using the installed system](/installed-system/index.md)
 - [Build your own Live ISO](/build-your-own-image.md)

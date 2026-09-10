@@ -19,7 +19,7 @@ mkfstab / --no -o /etc/test-fstab
 ```
 
 You can then review the output, created in `/etc/test-fstab`.
- 
+
 ## Building from source
 
 The source code of `mkfstab` is located in the main Redrose Linux repository, [https://github.com/redroselinux/redroselinux](https://github.com/redroselinux/redroselinux), in the directory `src/mkfstab/`.

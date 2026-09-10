@@ -132,7 +132,7 @@ If you still see the Live ISO GRUB menu after rebooting, select `Boot existing O
 
 ### Manual
 
-To manually install Redrose Linux on your computer, boot the Live ISO and pick manual installation. 
+To manually install Redrose Linux on your computer, boot the Live ISO and pick manual installation.
 
 This guide is unfinished, but it is enough for creating a simple bootable system.
 
@@ -215,7 +215,7 @@ mount /drive/part/1 /mnt
 > **Warning**<br>
 > The reason $drive was not used above is that different types of drives have different blockdev names for partitions.
 
-The rootfs tarball is located in `/rootfs.tar.gz`. 
+The rootfs tarball is located in `/rootfs.tar.gz`.
 ```bash
 gzip -dc /rootfs.tar.gz | tar -xvf - -C /mnt --strip-components=1
 ```

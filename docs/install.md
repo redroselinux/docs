@@ -1,3 +1,5 @@
+![Installer screenshot](https://redroselinux.org/assets/img/installer.png)
+
 # Redrose Linux Installation
 
 Before installing, note: this distribution is work in progress. The installer is simple, but not easier than installing Ubuntu.

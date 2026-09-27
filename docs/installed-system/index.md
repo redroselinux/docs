@@ -1,3 +1,5 @@
+![Redrose Linux booting](https://redroselinux.org/assets/img/hero.png)
+
 # Installed System Documentation
 
 This part of the documentation provides into on how to use the installed system.

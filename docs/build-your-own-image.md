@@ -13,8 +13,7 @@ Our Github repo is located at [https://github.com/redroselinux/redroselinux](htt
 git clone https://github.com/redroselinux/redroselinux --depth=1
 ```
 
-Using `--depth=1` makes the download much faster by not downloading the entire Git history of our repo. If you want to `git checkout` a specific release,
-you cannot use this flag as it only downloads the last commit.
+Using `--depth=1` makes the download much faster by not downloading the entire Git history of our repo. However, if you want to `git checkout` to a specific release, which is a good idea, you should rather use `--branch=<tag>`.
 
 ## Installing dependencies
 

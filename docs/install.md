@@ -224,6 +224,9 @@ gzip -dc /rootfs.tar.gz | tar -xvf - -C /mnt --strip-components=1
 
 After this command finished, run `ls /mnt` to check if the files got extracted correctly.
 
+> **Warning**<br>
+> Busybox will soon only be used as a recovery option and the main options will be GNU and uutils.
+
 Install busybox:
 ```bash
 chroot /mnt /bin/sh -c '/bin/busybox --install'

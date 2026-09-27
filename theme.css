@@ -29,6 +29,7 @@
     --border-color: rgba(255,255,255,0.08);
     --table-head-background: #0f0f0f;
     --table-row-even-background: rgba(255,255,255,0.02);
+    --table-row-odd-background: rgba(255,255,255,0.02);
     --sidebar-nav-link-background-color--hover: rgba(255,255,255,0.08);
     --selection-background: #e74c3c;
     --selection-color: #120000;

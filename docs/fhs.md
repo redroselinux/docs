@@ -6,7 +6,7 @@ Redrose Linux uses a very simple FHS. UsrMerge paths are symlinked, where `/` fo
 - `/sbin` `/usr/sbin`: programs for system administration (`fdisk`, `grub-install`, `fsck`...).
 - `/lib` `/usr/lib`: shared libraries used by dynamically linked programs.
 - `/lib64` `/usr/lib64`: 64-bit shared libraries on systems that separate them from `/usr/lib`.
-- `/etc`: system-wide configuration files.
+- `/etc` `/usr/etc`: system-wide configuration files.
 - `/home`: user home directories.
 - `/root`: home directory of the root user.
 - `/tmp`: temporary files. programs may delete files here at any time. (tmpfs)

@@ -90,6 +90,11 @@ download :: type :: <type-specific args>
 
 #### type `gnu_ftp`
 
+First up, if you are one of the people who think this can magically download any package that ever existed
+on any mirror, then NO. This is for ftp.gnu.org bruh.
+
+The file extension must be prefixed with a dot, like .tar.gz. I have no clue why does everyone mess that part up.
+
 ```
 download :: gnu_ftp :: file_ext
 ```
